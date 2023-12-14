@@ -26,7 +26,7 @@ def flatten_images(images):
     return np.array(flattened_images)
 
 # Load your dataset of images (cats, dogs, wild animals)
-train_folder_path = "afhq/train/cat"
+train_folder_path = r"KostasEdition/afhq/train/cat"
 images = load_images(train_folder_path)
 
 # Convert images to grayscale
@@ -66,9 +66,11 @@ class PCA:
         idxs = np.argsort(eigenvalues)[::-1]
         eigenvalues = eigenvalues[idxs]
         eigenvectors = eigenvectors[idxs]
+        inv_2_eigenvalues = np.linalg.inv(np.sqrt(np.diag(eigenvalues)))
 
         # Store first n_components eigenvectors
-        self.components = eigenvectors[0:self.n_components]
+        self.components = inv_2_eigenvalues @ eigenvectors.T
+        #self.components = eigenvectors[0:self.n_components] <-- changed this
 
 
     def transform(self, X):
