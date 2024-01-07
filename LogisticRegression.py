@@ -61,9 +61,11 @@ def error(images, targets, b_class_cats, b_class_dogs, b_class_wild):
         for j in range(len(pr_res)):
             cross_entropy -= target[j] * Math.log(pr_res[j])
 
-#Training
+#Applying Logistic Regression
 for i in range(30):
     err = error(images, targets, b_class_cats, b_class_dogs, b_class_wild)
+    alpha = 0.01
+    #Applying regression with cross-entropy
     b_class_cats = b_class_cats + alpha * err
     b_class_dogs = b_class_dogs + alpha * err
     b_class_wild = b_class_wild + alpha * err
