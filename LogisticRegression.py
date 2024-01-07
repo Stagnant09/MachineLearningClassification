@@ -32,9 +32,9 @@ def load_images(folder_path, class_name = None, size=(64, 64)):
 images = [cv2.resize(img, (32, 32)) for img in images]
 
 #Initializing b vectors for each class
-b_class_cats = np.zeros(32*32)
-b_class_dogs = np.zeros(32*32)
-b_class_wild = np.zeros(32*32)
+b_class_cats = np.randints(32*32)
+b_class_dogs = np.randints(32*32)
+b_class_wild = np.randints(32*32)
 
 def getClass_Probabilities(image, b_class_cats, b_class_dogs, b_class_wild):
     e_power_cats = Math.pow(2.71, np.dot(image, b_class_cats))
@@ -52,7 +52,6 @@ def getClass_Probabilities(image, b_class_cats, b_class_dogs, b_class_wild):
         return np.vectors.array([0, 0, 1]), np.vectors.array([pr_cats, pr_dogs, pr_wild]) #Wild
 
 def error(images, targets, b_class_cats, b_class_dogs, b_class_wild):
-
     cross_entropy = 0
     for i in range(len(images)):
         image = images[i]
@@ -60,6 +59,7 @@ def error(images, targets, b_class_cats, b_class_dogs, b_class_wild):
         pr_res = getClass_Probabilities(image, b_class_cats, b_class_dogs, b_class_wild)[1]
         for j in range(len(pr_res)):
             cross_entropy -= target[j] * Math.log(pr_res[j])
+    return cross_entropy
 
 #Applying Logistic Regression
 for i in range(30):
