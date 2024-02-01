@@ -37,12 +37,25 @@ images = [cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) for img in images]
 #Number of means
 k = 3
 
-#Initialize means with random numbers in [0,256]
-means = np.random.randint(0, 256, (k, 8, 8))
-neighbors = np.zeros(len(images))
+def kmeans(images, targets, k):
+    #Initialize means with random numbers in [0,256]
+    means = np.random.randint(0, 256, (k, 8, 8))
+    neighbors = np.zeros(len(images))
 
-#Train
-for epochs in range(10):
+    #Train
+    for epochs in range(10):
+        for i in range(len(images)):
+            img = images[i]
+            #Calculate distances
+            distances = np.zeros(k)
+            for j in range(k):
+                distances[j] = np.linalg.norm(img - means[j])
+            neighbors[i] = argmin(distances)
+        #Calculate new means
+        for i in range(k):
+            means[i] = np.mean(images[neighbors == i], axis=0)
+
+    #Test
     for i in range(len(images)):
         img = images[i]
         #Calculate distances
@@ -50,26 +63,24 @@ for epochs in range(10):
         for j in range(k):
             distances[j] = np.linalg.norm(img - means[j])
         neighbors[i] = argmin(distances)
-    #Calculate new means
-    for i in range(k):
-        means[i] = np.mean(images[neighbors == i], axis=0)
+        #Print results
+        if (targets[neighbors[i]] == targets[i]):
+            print("Success")
+        else:
+            print("Error")
 
-#Test
-for i in range(len(images)):
-    img = images[i]
-    #Calculate distances
-    distances = np.zeros(k)
-    for j in range(k):
-        distances[j] = np.linalg.norm(img - means[j])
-    neighbors[i] = argmin(distances)
-    if (targets[i] == [1,0,0]) and (neighbors[i] == 0):
-        print("Cat detected successfully")
-    elif (targets[i] == [0,1,0]) and (neighbors[i] == 1):
-        print("Dog detected successfully")
-    elif (targets[i] == [0,0,1]) and (neighbors[i] == 2):
-        print("Wild detected successfully")
-    else:
-        print("Error")
+"""
+        if (targets[i] == [1,0,0]) and (neighbors[i] == 0):
+            print("Success")
+        elif (targets[i] == [0,1,0]) and (neighbors[i] == 1):
+            print("Dog detected successfully")
+        elif (targets[i] == [0,0,1]) and (neighbors[i] == 2):
+            print("Wild detected successfully")
+        else:
+            print("Error") 
+"""
 
-
+kmeans(images, targets, k)
     
+def argmin(array):
+    return np.argmin(array)
