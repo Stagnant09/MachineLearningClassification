@@ -25,7 +25,7 @@ def flatten_images(images):
         flattened_images.append(img.flatten())
     return np.array(flattened_images)
 
-# Load your dataset of images (cats, dogs, wild animals)
+# Load the dataset of images (cats, dogs, wild animals)
 train_folder_path = r"KostasEdition/afhq/train/cat"
 images = load_images(train_folder_path)
 
