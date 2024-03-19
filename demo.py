@@ -2,7 +2,7 @@ import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
 import numpy as np
 
-img = mpimg.imread(r'C:\Users\Ανδρέας\Εργασίες & Ebooks\4ο έτος\Machine Learning\PROJECT\afhq\train\cat\flickr_cat_000002.jpg')
+img = mpimg.imread(r'\afhq\train\cat\flickr_cat_000002.jpg')
 print('This image is: ',type(img), 
      'with dimensions:', img.shape)
 plt.imshow(img)
