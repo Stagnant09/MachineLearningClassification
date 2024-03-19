@@ -26,7 +26,7 @@ def flatten_images(images):
     return np.array(flattened_images)
 
 # Load the dataset of images (cats, dogs, wild animals)
-train_folder_path = r"KostasEdition/afhq/train/cat"
+train_folder_path = r"/afhq/train/cat"
 images = load_images(train_folder_path)
 
 # Convert images to grayscale
