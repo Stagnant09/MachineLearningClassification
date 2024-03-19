@@ -8,9 +8,9 @@ import torch
 import torchvision.models as models
 
 #Loading images
-train_folder_path_cats = r"KostasEdition/afhq/train/cat"
-train_folder_path_dogs = r"KostasEdition/afhq/train/dog"
-train_folder_path_wild = r"KostasEdition/afhq/train/wild"
+train_folder_path_cats = r"/afhq/train/cat"
+train_folder_path_dogs = r"/afhq/train/dog"
+train_folder_path_wild = r"/afhq/train/wild"
 images, targets = load_images(train_folder_path_cats, [1,0,0])
 res = load_images(train_folder_path_dogs, [0,1,0])
 images.extend(res[0])
