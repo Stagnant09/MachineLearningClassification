@@ -5,9 +5,9 @@ import matplotlib.pyplot as plt
 import time
 import random
 
-train_folder_path_cats = r"KostasEdition/afhq/train/cat"
-train_folder_path_dogs = r"KostasEdition/afhq/train/dog"
-train_folder_path_wild = r"KostasEdition/afhq/train/wild"
+train_folder_path_cats = r"/afhq/train/cat"
+train_folder_path_dogs = r"/afhq/train/dog"
+train_folder_path_wild = r"/afhq/train/wild"
 images = load_images(train_folder_path_cats, 0)
 images.extend(load_images(train_folder_path_dogs), 1)
 images.extend(load_images(train_folder_path_wild), 2)
