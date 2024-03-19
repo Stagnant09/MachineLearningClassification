@@ -1,4 +1,0 @@
-
-You have to put afhq folder here!
-
-In every folder (cat/dog/wild) I consist to leave only 500 or 1000 photos to reduce computations!
